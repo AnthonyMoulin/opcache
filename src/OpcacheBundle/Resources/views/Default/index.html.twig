@@ -1,0 +1,238 @@
+
+{% extends 'base.html.twig' %}
+
+        {% block stylesheets %}
+   <style>
+ 
+ body {
+ 	 text-align: center;
+     margin: 0 auto;
+     width: 60%;
+ }
+
+table {
+      margin: 0 auto;
+      width: 80%;
+}
+h2 {
+
+	text-align: left;
+	padding: 0 20%;
+	margin: 5%;
+}    
+
+   
+   
+   
+   </style>    
+
+        
+        
+        
+        
+        {% endblock %}
+{% block section %}
+
+
+
+<h1>Opcache</h1>
+<a href="{{ path("opcache_delete") }}">Vider</a>
+
+
+<div>
+    <h2>Memory</h2>
+ 
+    <style scoped>
+    .memory {
+        width: 5em;
+        line-height: 5em;
+        text-align: center;
+        border-radius: 50%;
+        padding: .5em;
+        margin: 0 auto;
+        
+        {% if freepercentm>50 %}
+        background: linear-gradient(0deg, green 50%, transparent 50%, transparent 100%),
+                    linear-gradient({{(freepercentm -50)*3.6}}deg, green 50%, transparent 50%, transparent),
+                    linear-gradient({{(usedpercentm*3.6)-(freepercentm -50)*3.6}}deg, red 50%, orange 50%, orange 100%);
+                   
+     
+        {% else %}
+        background: linear-gradient(0deg, red 50%, transparent 50%, transparent),
+                    linear-gradient({{(usedpercentm -50)*3.6}}deg, red 50%, transparent 50%, transparent),
+                    linear-gradient({{(freepercentm*3.6)-(usedpercentm -50)*3.6}}deg, green 50%, orange 50%, orange 100%);
+        
+        {% endif %}      
+            }
+            
+            
+    
+   .memory span {
+        background: white;
+        display: block;
+        border-radius: 50%;
+    }
+    
+ 
+    </style>
+    
+     <table>
+          <tr>
+            <th>memory</th>
+            <th>numbers</th>
+            <th>%</th>
+          </tr>
+          <tr>
+            <td>Free</td>
+            <td> {{ entity.getfreeMemory()  }}MB </td>
+            <td>{{ freepercentm }}</td>
+          </tr>
+          <tr>
+            <td>Used</td>
+            <td>{{ entity.getUsedMemory() }} MB </td>
+            <td>{{ usedpercentm }}</td>
+          </tr>
+          <tr>
+            <td>Wasted</td>
+            <td>{{ entity.getWastedMemory() }} MB </td>
+            <td>{{ wastedpercentm }}</td>
+          </tr>
+       </table>
+          
+    <h3 class="memory">
+    	<span>{{ total1 }} MB</span>
+    </h3>
+</div>
+
+
+
+<h2>Keys</h2>
+
+    <style scoped>
+    	table tr:nth-child(odd) {
+            background: lightGrey;
+            
+        }
+    	table tr:nth-child(even) {
+            background: white;
+          
+        }
+        
+    
+    .keys {
+        width: 5em;
+        line-height: 5em;
+        text-align: center;
+        border-radius: 50%;
+        padding: .5em;
+        margin: 0 auto;
+        {% if freekeys >50 %}
+        background: linear-gradient(0deg, green 50%, transparent 50%, transparent 100%),
+                    linear-gradient({{(freekeys -50)*3.6}}deg, green 50%, transparent 50%, transparent),
+                    linear-gradient({{(usedpercentm*3.6)-(freepercentm -50)*3.6}}deg, red 50%, red 50%, red 100%);
+                   
+     
+        {% else %}
+        background: linear-gradient(0deg, red 50%, transparent 50%, transparent),
+                    linear-gradient({{(usedpercentm -50)*3.6}}deg, red 50%, transparent 50%, transparent),
+                    linear-gradient({{(freepercentm*3.6)-(usedpercentm -50)*3.6}}deg, green 50%, green 50%, green 100%);
+        
+        {% endif %}      
+   }
+   
+      .keys span {
+        background: white;
+        display: block;
+        border-radius: 50%;
+    }
+
+    </style>
+    
+         <table>
+          <tr>
+            <th>keys</th>
+            <th>numbers</th>
+            <th>%</th>
+          </tr>
+          <tr>
+            <td>Used</td>
+            <td> {{ entity.getNumCachedKeys() }} MB</td>
+            <td>{{ usedpercentk }}</td>
+          </tr>
+          <tr>
+            <td>Free</td>
+            <td>{{ entity.getMaxCachedKeys() }} MB</td>
+            <td>{{ freepercentk }}</td>
+          </tr>
+       </table>
+       
+    <h3 class="keys">
+    	<span>{{ total2 }} U</span>
+    </h3>
+
+<h2>Hits</h2>
+
+  <style scoped>
+  
+ .hits {
+        width: 5em;
+        line-height: 5em;
+        text-align: center;
+        border-radius: 50%;
+        padding: .5em;
+        margin: 0 auto;
+        {% if percenthits >50 %}
+        background: linear-gradient(0deg, green 50%, transparent 50%, transparent 100%),
+                    linear-gradient({{(freekeys -50)*3.6}}deg, green 50%, transparent 50%, transparent),
+                    linear-gradient({{(usedpercentm*3.6)-(freepercentm -50)*3.6}}deg, red 50%, red 50%, red 100%);
+                   
+     
+        {% else %}
+        background: linear-gradient(0deg, red 50%, transparent 50%, transparent),
+                    linear-gradient({{(usedpercentm -50)*3.6}}deg, red 50%, transparent 50%, transparent),
+                    linear-gradient({{(freepercentm*3.6)-(usedpercentm -50)*3.6}}deg, green 50%, green 50%, green 100%);
+        
+        {% endif %}      
+            }
+            
+   .hits span {
+        background: white;
+        display: block;
+        border-radius: 50%;
+    }
+
+
+ </style>
+ 
+		<table>
+          <tr>
+            <th>Hits</th>
+            <th>numbers</th>
+            <th>%</th>
+          </tr>
+          <tr>
+            <td>Hits</td>
+            <td> {{entity.getHits() }} MB</td>
+            <td>{{ percenthits }}</td>
+          </tr>
+          <tr>
+            <td>Miss</td>
+            <td>{{entity.getMisses() }} MB</td>
+            <td>{{ percentmiss }}</td>
+          </tr>
+       </table>
+    <h3 class="hits">
+    	<span>{{ total3 }} U</span>
+    </h3>
+
+
+
+<h2>Miscellaneous</h2>
+
+<p>Script {{ entity.getNumCachedScripts() }}</p>
+<p>Last Restart Time {{ entity.getLastRestartTime() }}</p>
+<p>Manual restarts {{ entity.getManualRestarts() }}</p>
+
+  
+	
+{% endblock %}

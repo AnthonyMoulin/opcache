@@ -1,0 +1,96 @@
+<?php
+
+namespace OpcacheBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Opcache
+ *
+ * @ORM\Table(name="opcache")
+ * @ORM\Entity
+ */
+class Opcache
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="used_memory", type="bigint", nullable=false)
+     */
+    private $usedMemory;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="free_memory", type="bigint", nullable=false)
+     */
+    private $freeMemory;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="wasted_memory", type="bigint", nullable=false)
+     */
+    private $wastedMemory;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="num_cached_scripts", type="integer", nullable=false)
+     */
+    private $numCachedScripts;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="num_cached_keys", type="integer", nullable=false)
+     */
+    private $numCachedKeys;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max_cached_keys", type="integer", nullable=false)
+     */
+    private $maxCachedKeys;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="hits", type="integer", nullable=false)
+     */
+    private $hits;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="last_restart_time", type="integer", nullable=false)
+     */
+    private $lastRestartTime;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="manual_restarts", type="integer", nullable=false)
+     */
+    private $manualRestarts;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="misses", type="integer", nullable=false)
+     */
+    private $misses;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="date", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $date;
+
+
+}
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="OpcacheBundle\Entity\Opcache" table="opcache">
+    <id name="date" type="integer" column="date">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="usedMemory" type="bigint" column="used_memory" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+    <field name="freeMemory" type="bigint" column="free_memory" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+    <field name="wastedMemory" type="bigint" column="wasted_memory" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+    <field name="numCachedScripts" type="integer" column="num_cached_scripts" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+    <field name="numCachedKeys" type="integer" column="num_cached_keys" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+    <field name="maxCachedKeys" type="integer" column="max_cached_keys" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+    <field name="hits" type="integer" column="hits" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+    <field name="lastRestartTime" type="integer" column="last_restart_time" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+    <field name="manualRestarts" type="integer" column="manual_restarts" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+    <field name="misses" type="integer" column="misses" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>
